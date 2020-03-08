@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Мое первое приложение</string>
+    <string name="btn1">Lab1</string>
+    <string name="btn2">Lab2</string>
+    <string name="btn3">Lab3</string>
+    <string name="btn4">Lab4</string>
+    <string name="btn5">Lab5</string>
+</resources>
+
