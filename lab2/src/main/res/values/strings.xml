@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">lab2</string>
+    <string name="number">Оценка</string>
+    <string name="quality">Качество</string>
+    <string name="btn1">Добавить</string>
 </resources>
