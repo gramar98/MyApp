@@ -5,20 +5,12 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.graphics.PorterDuff;
-import android.os.Parcel;
-import android.os.Parcelable;
 import android.util.AttributeSet;
-import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-
-import androidx.annotation.IdRes;
-import androidx.annotation.Nullable;
 import androidx.annotation.Px;
-import androidx.constraintlayout.solver.widgets.WidgetContainer;
 
 public class lab2ViewsContainer extends LinearLayout {
 
@@ -27,6 +19,8 @@ public class lab2ViewsContainer extends LinearLayout {
     private int incriment = 1;
     private int idMaxValue = -1;
     private double MaxValue = -1;
+    ArrayList<String> qualitiesAr = new ArrayList<String>();
+    ArrayList<Double> numbersAr = new ArrayList<Double>();
 
     /**
      * Этот конструктор используется при создании View в коде.
@@ -54,35 +48,10 @@ public class lab2ViewsContainer extends LinearLayout {
         // Свои атрибуты описываются в файле res/values/attrs.xml
         // Эта строчка объединяет возможные применённые к View стили
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.Lab2ViewsContainer, defStyleAttr, 0);
-
-        minViewsCount = a.getInt(R.styleable.Lab2ViewsContainer_lab2_minViewsCount, 0);
-        if (minViewsCount < 0) {
-            throw new IllegalArgumentException("minViewsCount can't be less than 0");
-        }
-
         // Полученный TypedArray необходимо обязательно очистить.
         a.recycle();
-
-        setViewsCount(minViewsCount);
     }
 
-    /**
-     * Программно создаём {@link TextView} и задаём его атрибуты, альтернативно можно описать его в
-     * xml файле и инфлейтить его через класс LayoutInflater.
-     */
-    public void incrementViews() {
-        TextView textView = new TextView(getContext());
-        textView.setPadding(dpToPx(8), dpToPx(8), dpToPx(8), dpToPx(8));
-        textView.setTextSize(16);
-        textView.setText(String.valueOf(viewsCount++));
-        // У каждого View, который находится внутри ViewGroup есть LayoutParams,
-        // в них содержится информация для лэйаута компонентов.
-        // Базовая реализация LayoutParams содержит только определение ширины и высоты
-        // (то, что мы указываем в xml в атрибутах layout_widget и layout_height).
-        // Получить их можно через метод getLayoutParams у View. Метод addView смотрит, если у View
-        // не установлены LayoutParams, то создаёт дефолтные, вызывая метод generateDefaultLayoutParams
-        addView(textView);
-    }
 
     @SuppressLint("DefaultLocale")
     public void AddView(double val, String quality) {
@@ -107,6 +76,24 @@ public class lab2ViewsContainer extends LinearLayout {
         progressBar.setMax(100);
         progressBar.setId(incriment);
         progressBar.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
+        if(idMaxValue == -1)
+        {
+            idMaxValue = incriment;
+            MaxValue =  val;
+            progressBar.getProgressDrawable().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+        }
+        else if (MaxValue < val)
+        {
+            ProgressBar cur = (ProgressBar) findViewById(idMaxValue);
+            cur.getProgressDrawable().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
+            idMaxValue = incriment;
+            MaxValue = val;
+            progressBar.getProgressDrawable().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
+        }
+        else {
+            progressBar.getProgressDrawable().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
+        }
+
 
         // У каждого View, который находится внутри ViewGroup есть LayoutParams,
         // в них содержится информация для лэйаута компонентов.
@@ -118,23 +105,16 @@ public class lab2ViewsContainer extends LinearLayout {
         linearLayout.addView(numberText);
         linearLayout.addView(progressBar);
         addView(linearLayout);
-        if(idMaxValue == -1)
-        {
-            idMaxValue = incriment;
-            MaxValue =  val;
-        }
-        else if (MaxValue < val)
-        {
-            idMaxValue = incriment;
-            MaxValue = val;
-        }
-        for (int i = 1; i<incriment+1; i++)
+
+        /*for (int i = 1; i<incriment+1; i++)
         {
             ProgressBar cur = (ProgressBar) findViewById(i);
             cur.getProgressDrawable().setColorFilter(idMaxValue==i?Color.RED:Color.BLACK, PorterDuff.Mode.SRC_IN);
 
-        }
+        }*/
         incriment++;
+        qualitiesAr.add(quality);
+        numbersAr.add(val);
     }
 
     public void setViewsValues(double[] numbers, ArrayList<String> qualities) {
@@ -142,6 +122,8 @@ public class lab2ViewsContainer extends LinearLayout {
             return;
         }
         removeAllViews();
+        numbersAr.clear();
+        qualitiesAr.clear();
         incriment = 1;
         idMaxValue = -1;
         for (int i = 0; i < numbers.length; i++) {
@@ -150,32 +132,11 @@ public class lab2ViewsContainer extends LinearLayout {
             AddView(v1,q1);
         }
     }
-    public void setViewsCount(int viewsCount) {
-        if (this.viewsCount == viewsCount) {
-            return;
-        }
-        viewsCount = viewsCount < minViewsCount ? minViewsCount : viewsCount;
 
-        removeAllViews();
-        this.viewsCount = 0;
-        for (int i = 0; i < viewsCount; i++) {
-            incrementViews();
-        }
+    public ArrayList<String> getQualityArray() {
+        return qualitiesAr;
     }
-    public int getViewsCount() {
-        return viewsCount;
+    public ArrayList<Double> getValueArray() {
+        return numbersAr;
     }
-
-    /**
-     * Метод трансформирует указанные dp в пиксели, используя density экрана.
-     */
-    @Px
-    public int dpToPx(float dp) {
-        if (dp == 0) {
-            return 0;
-        }
-        float density = getResources().getDisplayMetrics().density;
-        return (int) Math.ceil(density * dp);
-    }
-
 }
