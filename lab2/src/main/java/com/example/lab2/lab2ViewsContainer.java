@@ -33,25 +33,9 @@ public class lab2ViewsContainer extends LinearLayout {
      * Этот конструктор выдывается при создании View из XML.
      */
     public lab2ViewsContainer(Context context, AttributeSet attrs) {
-        this(context, attrs, 0);
+        super(context, attrs, 0);
+        AddView(5, "Категория");
     }
-
-    /**
-     * Конструктор, вызывается при инфлейте View, когда у View указан дополнительный стиль.
-     * Почитать про стили можно здесь https://developer.android.com/guide/topics/ui/look-and-feel/themes
-     *
-     * @param attrs атрибуты, указанные в XML. Стандартные android атрибуты обрабатываются внутри родительского класса.
-     *              Здесь необходимо только обработать наши атрибуты.
-     */
-    public lab2ViewsContainer(Context context, AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
-        // Свои атрибуты описываются в файле res/values/attrs.xml
-        // Эта строчка объединяет возможные применённые к View стили
-        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.Lab2ViewsContainer, defStyleAttr, 0);
-        // Полученный TypedArray необходимо обязательно очистить.
-        a.recycle();
-    }
-
 
     @SuppressLint("DefaultLocale")
     public void AddView(double val, String quality) {
