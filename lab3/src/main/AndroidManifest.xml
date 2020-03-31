@@ -3,7 +3,8 @@
     package="com.example.lab3">
 
     <application>
-        <activity android:name=".lab3Activity"></activity>
+        <activity android:name=".AddStudentActivity"></activity>
+        <activity android:name=".lab3Activity" />
     </application>
 
 </manifest>

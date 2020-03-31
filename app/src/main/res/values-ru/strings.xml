@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Мое первое приложение</string>
+    <string name="btn1">Лаб 1</string>
+    <string name="btn2">Лаб 2</string>
+    <string name="btn3">Лаб 3</string>
+    <string name="btn4">Лаб 4</string>
+    <string name="btn5">Лаб 5</string>
+</resources>

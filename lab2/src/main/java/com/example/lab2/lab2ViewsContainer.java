@@ -9,7 +9,9 @@ import android.util.AttributeSet;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+
 import java.util.ArrayList;
+
 import androidx.annotation.Px;
 
 public class lab2ViewsContainer extends LinearLayout {
@@ -34,7 +36,7 @@ public class lab2ViewsContainer extends LinearLayout {
      */
     public lab2ViewsContainer(Context context, AttributeSet attrs) {
         super(context, attrs, 0);
-        AddView(5, "Категория");
+        AddView(5, "Category");
     }
 
     @SuppressLint("DefaultLocale")
@@ -46,35 +48,31 @@ public class lab2ViewsContainer extends LinearLayout {
         //qualityText.setPadding(dpToPx(8), dpToPx(8), dpToPx(8), dpToPx(8));
         //qualityText.setTextSize(16);
         qualityText.setText(String.valueOf(quality));
-        qualityText.setWidth(150);
+        qualityText.setWidth(200);
         qualityText.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
         TextView numberText = new TextView(getContext());
         //numberText.setPadding(dpToPx(8), dpToPx(8), dpToPx(8), dpToPx(8));
         //numberText.setTextSize(16);
         numberText.setText(String.valueOf(val));
-        numberText.setWidth(50);
+        numberText.setWidth(100);
         numberText.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT));
         ProgressBar progressBar = new ProgressBar(getContext(), null, android.R.attr.progressBarStyleHorizontal);
-        progressBar.setProgress((int)(val*10));
+        progressBar.setProgress((int) (val * 10));
         //progressBar.setPadding(dpToPx(8), dpToPx(8), dpToPx(8), dpToPx(8));
         progressBar.setMax(100);
         progressBar.setId(incriment);
         progressBar.setLayoutParams(new LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT));
-        if(idMaxValue == -1)
-        {
+        if (idMaxValue == -1) {
             idMaxValue = incriment;
-            MaxValue =  val;
+            MaxValue = val;
             progressBar.getProgressDrawable().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
-        }
-        else if (MaxValue < val)
-        {
+        } else if (MaxValue < val) {
             ProgressBar cur = (ProgressBar) findViewById(idMaxValue);
             cur.getProgressDrawable().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
             idMaxValue = incriment;
             MaxValue = val;
             progressBar.getProgressDrawable().setColorFilter(Color.RED, PorterDuff.Mode.SRC_IN);
-        }
-        else {
+        } else {
             progressBar.getProgressDrawable().setColorFilter(Color.BLACK, PorterDuff.Mode.SRC_IN);
         }
 
@@ -113,13 +111,14 @@ public class lab2ViewsContainer extends LinearLayout {
         for (int i = 0; i < numbers.length; i++) {
             String q1 = qualities.get(i);
             double v1 = numbers[i];
-            AddView(v1,q1);
+            AddView(v1, q1);
         }
     }
 
     public ArrayList<String> getQualityArray() {
         return qualitiesAr;
     }
+
     public ArrayList<Double> getValueArray() {
         return numbersAr;
     }

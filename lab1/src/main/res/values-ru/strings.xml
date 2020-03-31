@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="lab1_text">Моя первая лабораторная</string>
+    <string name="lab1_app_name">Лаб 1</string>
+</resources>

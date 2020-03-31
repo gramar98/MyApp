@@ -1,4 +1,4 @@
 <resources>
-    <string name="app_name">lab1</string>
-    <string name="text">Это первая лабораторная</string>
+    <string name="lab1_app_name">lab1</string>
+    <string name="lab1_text">This is my firs lab</string>
 </resources>
