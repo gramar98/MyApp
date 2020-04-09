@@ -107,17 +107,19 @@ public class lab3Activity extends AppCompatActivity {
         List<SparseArray> studentsGroups = new ArrayList<>();
         for (int i = 0; i < students.size(); i++) {
             addNewGroup = true;
+            int startIndex = 0;
             for (SparseArray s : studentsGroups) {
+                startIndex++;
                 int group = Integer.parseInt(s.get(0).toString());
                 if (group == GROUP && s.get(1).toString().equals(students.get(i).group.groupName)) {
-
+                    startIndex++;
                     SparseArray newStudent = new SparseArray();
                     newStudent.put(0, STUDENT);
                     newStudent.put(1, students.get(i).firstName);
                     newStudent.put(2, students.get(i).secondName);
                     newStudent.put(3, students.get(i).lastName);
                     newStudent.put(4, students.get(i).group.groupName);
-                    studentsGroups.add(newStudent);
+                    studentsGroups.add(startIndex, newStudent);
                     addNewGroup = false;
                     break;
 

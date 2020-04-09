@@ -10,11 +10,4 @@ public class Group{
         this.groupName = groupName;
     }
 
-
-    @NonNull
-    @Override
-    public String toString() {
-        return groupName;
-    }
-
 }
