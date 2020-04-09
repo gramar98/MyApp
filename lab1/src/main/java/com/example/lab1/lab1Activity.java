@@ -16,7 +16,7 @@ public class lab1Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_lab1);
+        setContentView(R.layout.lab1_activity);
         setTitle(getClass().getSimpleName());
     }
 }

@@ -1,6 +1,7 @@
 package com.example.myapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -20,10 +21,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
 
-        findViewById(R.id.lab1).setOnClickListener((v)-> startActivity(lab1Activity.newIntent(this)));
-        findViewById(R.id.lab2).setOnClickListener((v)-> startActivity(lab2Activity.newIntent(this)));
-        findViewById(R.id.lab3).setOnClickListener((v)-> startActivity(lab3Activity.newIntent(this)));
-        findViewById(R.id.lab4).setOnClickListener((v)-> startActivity(lab4Activity.newIntent(this)));
-        findViewById(R.id.lab5).setOnClickListener((v)-> startActivity(lab5Activity.newIntent(this)));
+        findViewById(R.id.lab1).setOnClickListener((v) -> startActivity(lab1Activity.newIntent(this)));
+        findViewById(R.id.lab2).setOnClickListener((v) -> startActivity(lab2Activity.newIntent(this)));
+        findViewById(R.id.lab3).setOnClickListener((v) -> startActivity(lab3Activity.newIntent(this)));
+        findViewById(R.id.lab4).setOnClickListener((v) -> startActivity(lab4Activity.newIntent(this)));
+        findViewById(R.id.lab5).setOnClickListener((v) -> startActivity(lab5Activity.newIntent(this)));
     }
 }

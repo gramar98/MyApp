@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Мое первое приложение</string>
+    <string name="app_name">My first application</string>
     <string name="btn1">Lab1</string>
     <string name="btn2">Lab2</string>
     <string name="btn3">Lab3</string>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="lab2_app_name">Лаб 2</string>
+    <string name="lab2_btn1">Добавить</string>
+    <string name="lab2_mark">Внешность</string>
+    <string name="lab2_number">Число</string>
+    <string name="lab2_quality">Качество</string>
+</resources>
